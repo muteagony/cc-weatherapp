@@ -1,3 +1,6 @@
+import url from '../img/cloud.png';
+
+
 class Daysection {
     constructor() {
       this.element = document.createElement("section");
@@ -9,11 +12,18 @@ class Daysection {
       this.element.innerHTML = `
         <div id="day"></div>
       `;
+      // creating div, which will hold icon
+      const icon = document.createElement("div");
+      document.getElementById('day').appendChild(icon);
+      icon.setAttribute('id', 'icon');
+      const img = document.createElement("img");
+      img.src = url;
+      document.getElementById('icon').appendChild(img);
       // creating div, which will hold temperature
       const temp = document.createElement("div");
       document.getElementById('day').appendChild(temp);
       temp.setAttribute('id', 'temp');
-      temp.innerHTML = '25°C';
+      temp.innerText = '25°C';
       // creating div, which will hold date
       const date = document.createElement("div");
       document.getElementById('day').appendChild(date);
@@ -23,6 +33,7 @@ class Daysection {
       const chart = document.createElement("div");
       document.getElementById('day').appendChild(chart);
       chart.setAttribute('id', 'chart');
+
       // creating div, which will hold precipitation probability
       const rain = document.createElement("div");
       document.getElementById('day').appendChild(rain);
