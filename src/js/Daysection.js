@@ -33,6 +33,48 @@ class Daysection {
       const chart = document.createElement("div");
       document.getElementById('day').appendChild(chart);
       chart.setAttribute('id', 'chart');
+      const tempChart = document.createElement("canvas");
+      document.getElementById('chart').appendChild(tempChart);
+      tempChart.setAttribute('id', 'tempchart');
+      //creating a chart
+      Chart.defaults.global.defaultFontColor = 'black';
+      const ctx = document.getElementById('tempchart').getContext('2d');
+      const tempchart = new Chart(ctx, {
+        type: 'line',
+        // The data for our dataset, we're gonna change when API will be done
+        data: {
+          labels: ['1', '2', '3', '4', '5', '6', '7'],
+          datasets: [{
+            backgroundColor: 'transparent',
+            borderColor: 'black',
+            pointBackgroundColor: 'black',
+            data: [20, 23, 25, 10, -9, 0, 19],
+          }]
+        },
+        // Configuration options
+        options: {
+          maintainAspectRatio: false,
+          legend:{
+            display: false,
+          },
+          scales: {
+            xAxes: [{
+              gridLines: {
+                  color: "black",
+              }
+          }],
+            yAxes: [{
+              gridLines: {
+                color: "black",
+              },
+              scaleLabel: {
+                display: true,
+                labelString: 'T[°C]',
+              }
+            }]
+          }
+        }
+      });
 
       // creating div, which will hold precipitation probability
       const rain = document.createElement("div");
