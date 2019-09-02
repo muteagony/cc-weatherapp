@@ -5,5 +5,5 @@ import Weeksection from "./Weeksection";
 const weekSection = new Weeksection();
 
 window.onload = () => {
-  weekSection.render();
+  weekSection.render('Wrocław','pl');
 };

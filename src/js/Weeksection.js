@@ -1,22 +1,30 @@
 import url from '../img/cloud.png';
+import getWeekForecast from '../api/api.js';
 
 class Weeksection {
     constructor() {
       this.element = document.createElement("section");
       this.element.setAttribute('class', 'week');
-      this._weekNrOfDays = 7;
+      this._weekNrOfDays = 4;
+    }
+
+    findElement(data, dateTemplate) {
+      const hourTemplate = '15:00:00';
+      dateTemplate = `${dateTemplate[0]}-${dateTemplate[1]}-${dateTemplate[2]}`;
+      const correctElement = data.list.find((ele)=>{
+          return ele.dt_txt.includes(dateTemplate)&&ele.dt_txt.includes(hourTemplate);
+      });
+      return correctElement;
     }
 
     fillImgBox(curDay) {
       const text = document.querySelector(`.weekDay:nth-child(${curDay}) #weekImg`);
-      let img = document.createElement("img");
-      img.src = url;
-      text.appendChild(img);
+      text.innerHTML = `<img src="${url}" alt="weather"">`;
     }
 
-    fillTempBox(curDay) {
-      const temp = Math.floor(Math.random()*15)+15;
-      let text = document.querySelector(`.weekDay:nth-child(${curDay}) #weekTemp`);
+    fillTempBox(curDay, correctElement) {
+      const temp = Math.round(correctElement.main.temp);
+      const text = document.querySelector(`.weekDay:nth-child(${curDay}) #weekTemp`);
       text.innerHTML = `${temp}&#8451`;
     }
 
@@ -29,10 +37,11 @@ class Weeksection {
       const year = String(date.getFullYear());
       const text = document.querySelector(`.weekDay:nth-child(${curDay}) #weekDate`);
       text.innerHTML = `${day}.${month}.${year}`;
+      return [year,month,day];
     }
 
     //create boxes
-    render() {
+    async render(cityName, coutryCode) {
       document.querySelector("#root").appendChild(this.element);
       this.element.innerHTML = `<div class="weekMain"></div>`;
 
@@ -44,7 +53,7 @@ class Weeksection {
           const category = document.createElement("div");
           category.setAttribute('class', 'weekCategory');
           day.appendChild(category);
-          let content = document.createElement("div");
+          const content = document.createElement("div");
           content.setAttribute('class', 'weekContent');
           switch(j) {
             case 0:
@@ -60,12 +69,15 @@ class Weeksection {
           category.appendChild(content);
         }
       }
-
+      //get weather data
+      const data = await getWeekForecast(cityName, coutryCode);
+      let curDate, element;
       //fill boxes
       for(let i=1;i<=this._weekNrOfDays;i++) {
+        curDate = this.fillDateBox(i);
+        element = this.findElement(data, curDate);
         this.fillImgBox(i);
-        this.fillTempBox(i);
-        this.fillDateBox(i);
+        this.fillTempBox(i, element);       
       }
     }
   }
