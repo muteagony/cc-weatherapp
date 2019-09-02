@@ -1,4 +1,9 @@
-import url from '../img/cloud.png';
+import cloud from '../img/cloud.png';
+import rain from '../img/rain.png';
+import snow from '../img/snow.png';
+import storm from '../img/storm.png';
+import sun from '../img/sun.png';
+import sun_part_cloud from '../img/sun_part_cloud.png';
 import getWeekForecast from '../api/api.js';
 
 class Weeksection {
@@ -17,9 +22,44 @@ class Weeksection {
       return correctElement;
     }
 
-    fillImgBox(curDay) {
+    fillImgBox(curDay, correctElement) {
+      let weather;
+      switch(correctElement.weather[0].icon) {
+        case '11d':
+          weather = storm;
+          break;
+        case '09d':
+          weather = rain;
+          break;
+        case '10d':
+          weather = rain;
+          break;
+        case '13d':
+          weather = snow;
+          break;
+        case '09d':
+          weather = rain;
+          break;
+        case '50d':
+          weather = cloud;
+          break;
+        case '01d':
+          weather = sun;
+          break;
+        case '02d':
+          weather = sun_part_cloud;
+        case '03d':
+          weather = cloud;
+          break;
+        case '04d':
+          weather = cloud;
+          break;
+        default:
+          weather = sun;
+          break;
+      }
       const text = document.querySelector(`.weekDay:nth-child(${curDay}) #weekImg`);
-      text.innerHTML = `<img src="${url}" alt="weather"">`;
+      text.innerHTML = `<img src="${weather}" alt="weather"">`;
     }
 
     fillTempBox(curDay, correctElement) {
@@ -76,7 +116,7 @@ class Weeksection {
       for(let i=1;i<=this._weekNrOfDays;i++) {
         curDate = this.fillDateBox(i);
         element = this.findElement(data, curDate);
-        this.fillImgBox(i);
+        this.fillImgBox(i, element);
         this.fillTempBox(i, element);       
       }
     }
