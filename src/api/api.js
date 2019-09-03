@@ -6,4 +6,4 @@ const getWeekForecast = (cityName, countryCode) => {
      .catch((err) => console.log(err));
 }
 
-module.exports = getWeekForecast;
+module.exports = {getWeekForecast};
