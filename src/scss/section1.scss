@@ -10,6 +10,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; //needed to be change using sass math and sass grid
         grid-template-rows: 1fr 1fr 1fr; //needed to be change using sass math and sass grid
+        flex: 6;
 
         #icon{
             grid-column: 1/3;

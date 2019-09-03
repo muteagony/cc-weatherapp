@@ -7,7 +7,7 @@ class Header {
     render() {
       document.querySelector("#root").appendChild(this.element);
       this.element.innerHTML = `
-        <div class="header">Header (searcher here) section</div>
+        <div id="header">Header (searcher here) section</div>
       `;
     }
   }
