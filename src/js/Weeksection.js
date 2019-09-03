@@ -7,7 +7,7 @@ class Weeksection {
     render() {
       document.querySelector("#root").appendChild(this.element);
       this.element.innerHTML = `
-        <div class="week">Week section</div>
+        <div id="week">Week section</div>
       `;
     }
   }

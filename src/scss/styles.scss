@@ -1,4 +1,4 @@
-@import "example.scss";
+
 @import "section1.scss";
 @import "section2.scss";
 @import "header.scss";
@@ -25,7 +25,6 @@ body{
     height:100%;
 
     > section{
-        flex: 1;
         > div {
             height: 100%;
         }
