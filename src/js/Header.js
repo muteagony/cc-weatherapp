@@ -1,7 +1,7 @@
 class Header {
     constructor() {
       this.element = document.createElement("section");
-      this.element.setAttribute('class', 'header');
+      this.element.setAttribute('class', 'header_section');
     }
   
     render() {
