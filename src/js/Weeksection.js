@@ -1,7 +1,7 @@
 class Weeksection {
     constructor() {
       this.element = document.createElement("section");
-      this.element.setAttribute('class', 'week');
+      this.element.setAttribute('class', 'week_section');
     }
   
     render() {

@@ -1,10 +1,7 @@
-import url from '../img/cloud.png';
-
-
 class Daysection {
     constructor() {
       this.element = document.createElement("section");
-      this.element.setAttribute('class', 'day');
+      this.element.setAttribute('class', 'day_section');
     }
   
     render() {
@@ -16,9 +13,9 @@ class Daysection {
       const icon = document.createElement("div");
       document.getElementById('day').appendChild(icon);
       icon.setAttribute('id', 'icon');
-      const img = document.createElement("img");
-      img.src = url;
-      document.getElementById('icon').appendChild(img);
+      icon.innerHTML = `
+      <img src='../img/cloud.png'>
+      `;
       // creating div, which will hold temperature
       const temp = document.createElement("div");
       document.getElementById('day').appendChild(temp);
