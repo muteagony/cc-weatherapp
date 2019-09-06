@@ -7,9 +7,11 @@ class Header {
     render() {
       document.querySelector("#root").appendChild(this.element);
       this.element.innerHTML = `
-        <div id="header">Header (searcher here) section</div>
+        <img src="" alt="Lupka szukaj">
+        <input id="header" placeholder="What's the weather like in: "></input>
       `;
     }
-  }
+   
+}
   
   export default Header;

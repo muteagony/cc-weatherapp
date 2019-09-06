@@ -3,6 +3,7 @@ import "../scss/styles.scss";
 import Daysection from "./Daysection";
 import Weeksection from "./Weeksection";
 import Header from "./Header";
+import weatherApi from "../api/api";
 
 const daysection = new Daysection();
 const weeksection = new Weeksection();
@@ -12,4 +13,6 @@ window.onload = () => {
   header.render();
   daysection.render();
   weeksection.render();
+  //pogoda dla toronto
+  weatherApi("Toronto");
 };
