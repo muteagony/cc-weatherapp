@@ -9,10 +9,16 @@ const daysection = new Daysection();
 const weeksection = new Weeksection();
 const header = new Header();
 
+
 window.onload = () => {
   header.render();
   daysection.render();
   weeksection.render();
-  //pogoda dla toronto
-  weatherApi("Toronto");
+  //pogoda dla wyszukania
+  document.getElementById("header").addEventListener("keypress",function(e){
+    if(e.key === "Enter"){
+      let x = this.value;
+      weatherApi(x);
+    }
+  });
 };
