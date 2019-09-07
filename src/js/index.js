@@ -1,9 +1,9 @@
 import "@babel/polyfill";
 import "../scss/styles.scss";
-import Example from "./Example";
+import Weeksection from "./Weeksection";
 
-const example = new Example();
+const weekSection = new Weeksection();
 
 window.onload = () => {
-  example.render();
+  weekSection.render('Wrocław','pl');
 };
