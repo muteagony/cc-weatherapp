@@ -6,7 +6,10 @@ function weatherApi( cityName ) {
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
 
-      console.table(data);
+      console.log(data.name); //nazwa wybranego miasta
+      console.log(`${data.main.humidity}% wilgotności`); //wilgotność
+      console.log(`${data.wind.speed} m/s`); // Prędkość wiatru
+      console.log(`Mamy ${Math.round(parseFloat(data.main.temp)-273.15)} ℃`);  //Celcius - temp
       //api połączone pokazuje wszystkie dane
 
     })
