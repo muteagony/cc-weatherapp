@@ -13,13 +13,13 @@ const header = new Header();
 window.onload = () => {
   header.render();
   daysection.render("Toronto");
-  weeksection.render("Toronto", "CA");
+  weeksection.render("Toronto");
   //pogoda dla wyszukania
   document.getElementById("header").addEventListener("keypress",function(e){
     if(e.key === "Enter"){
       let x = this.value;
       daysection.render(x);
-      weeksection.render(x, "CA");
+      weeksection.render(x);
     }
   });
 };
