@@ -42,7 +42,7 @@ class Weeksection {
   }
 
   //create boxes
-  async render(cityName, coutryCode) {
+  async render(cityName) {
     document.querySelector("#root").appendChild(this.element);
     this.element.innerHTML = `<div class="weekMain"></div>`;
 
@@ -71,7 +71,7 @@ class Weeksection {
       }
     }
     //get weather data
-    const data = await api.getWeekForecast(cityName, coutryCode);
+    const data = await api.getWeekForecast(cityName);
     let curDate, element;
     //fill boxes
     for(let i=1;i<=this._weekNrOfDays;i++) {
