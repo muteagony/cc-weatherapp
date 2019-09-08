@@ -1,23 +1,40 @@
+import api from "../api/api.js";
+import findWeather from '../static/iconMap.js';
+
 class Daysection {
     constructor() {
       this.element = document.createElement("section");
       this.element.setAttribute('class', 'day_section');
+      
+       
     }
   
-    render() {
+    async render(city) {
+      const data = await api.getTodaysWeather(city);
+      console.log(data);
+      
+      const weatherData = {
+        'name': data.name,
+        'rain': data.main.humidity,
+        'wind': data.wind.speed,
+        'temp': Math.round(parseFloat(data.main.temp)-273.15),
+        'icon': findWeather(data.weather[0].icon)
+      }
+      var today = new Date().toJSON().slice(0,10);
+
       document.querySelector("#root").appendChild(this.element);
       this.element.innerHTML = `
         <div id="day">
           <div id="icon">
-            <img src='../img/cloud.png'>
+            <img src=${weatherData.icon}>
           </div>
-          <div id="temp">25°C</div>
-          <div id="date">28.08.2019</div>
+          <div id="temp">${weatherData.temp} °C</div>
+          <div id="date">${today}</div>
           <div id="chart">
             <canvas id="tempchart"></canvas>
           </div>
-          <div id="rain">13%</div>
-          <div id="wind">20 m/s</div>
+          <div id="rain">${weatherData.rain}%</div>
+          <div id="wind">${weatherData.wind} m/s</div>
         </div>
       `;
       //creating a chart

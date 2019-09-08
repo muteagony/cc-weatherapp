@@ -12,13 +12,14 @@ const header = new Header();
 
 window.onload = () => {
   header.render();
-  daysection.render();
-  weeksection.render();
+  daysection.render("Toronto");
+  weeksection.render("Toronto", "CA");
   //pogoda dla wyszukania
   document.getElementById("header").addEventListener("keypress",function(e){
     if(e.key === "Enter"){
       let x = this.value;
-      weatherApi(x);
+      daysection.render(x);
+      weeksection.render(x, "CA");
     }
   });
 };
