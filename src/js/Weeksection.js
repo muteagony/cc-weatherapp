@@ -42,7 +42,7 @@ class Weeksection {
   }
 
   //create boxes
-  async render(cityName, coutryCode) {
+  async render(cityName) {
     document.querySelector("#root").appendChild(this.element);
     this.element.innerHTML = `<div class="weekMain"></div>`;
 
