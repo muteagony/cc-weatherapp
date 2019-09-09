@@ -1,9 +1,25 @@
 import "@babel/polyfill";
 import "../scss/styles.scss";
+import Daysection from "./Daysection";
 import Weeksection from "./Weeksection";
+import Header from "./Header";
+import weatherApi from "../api/api";
 
-const weekSection = new Weeksection();
+const daysection = new Daysection();
+const weeksection = new Weeksection();
+const header = new Header();
+
 
 window.onload = () => {
-  weekSection.render('Wrocław');
+  header.render();
+  daysection.render("Toronto");
+  weeksection.render("Toronto");
+  //pogoda dla wyszukania
+  document.getElementById("header").addEventListener("keypress",function(e){
+    if(e.key === "Enter"){
+      let x = this.value;
+      daysection.render(x);
+      weeksection.render(x);
+    }
+  });
 };
